@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "start": "ts-node -r dotenv/config ./src/app.ts",
+    "build": "tsc",
+    "test": "jest --watchAll=false --detectOpenHandles --forceExit"
+  },
+  "dependencies": {
+    "@langchain/core": "^0.3.43",
+    "@langchain/openai": "^0.5.4",
+    "dotenv": "^16.4.7",
+    "langchain": "^0.3.20"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
