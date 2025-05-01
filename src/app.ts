@@ -5,19 +5,25 @@ import { ChatOpenAI } from "@langchain/openai";
 import cors from "cors";
 import express from "express";
 import { getWidgetListContext } from "./widgets/widgets";
+import { ChatBedrockConverse } from "@langchain/aws";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const model = new ChatOpenAI({
-  // model: "deepseek-ai/DeepSeek-V3-0324",
-  model: "google/gemma-3-27b-it",
-  apiKey: process.env.FEATHERLESS_API_KEY,
-  configuration: {
-    baseURL: "https://api.featherless.ai/v1",
-  },
-  timeout: 10_000,
+// const model = new ChatOpenAI({
+//   // model: "deepseek-ai/DeepSeek-V3-0324",
+//   model: "google/gemma-3-27b-it",
+//   apiKey: process.env.FEATHERLESS_API_KEY,
+//   configuration: {
+//     baseURL: "https://api.featherless.ai/v1",
+//   },
+//   timeout: 10_000,
+// });
+
+const model = new ChatBedrockConverse({
+  model: "us.amazon.nova-micro-v1:0",
+  region: "us-west-2",
 });
 
 const translationPrompt =
@@ -95,7 +101,7 @@ app.post("/widgets", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3009;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
