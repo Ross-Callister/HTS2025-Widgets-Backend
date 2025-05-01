@@ -12,7 +12,7 @@ export const widgets: Widget[] = [
     description:
       "A widget to control the volume level. It allows users to adjust the volume from 0 to 100. The initialVolume prop sets the starting volume level.",
     props: {
-      initialVolume: "number",
+      newVolume: "number",
     },
   },
   {
@@ -38,6 +38,10 @@ export function getWidgetListContext() {
 ${widgets.map((x) => JSON.stringify(x, null, 2)).join(",\n")}
   \`\`\`
 
+  Keep in mind that every prop is optional, in fact the entire props property is optional. Leaving out a prop will retain and display the current value for that prop. Leaving out props entirely displays the widget's current values.
+  Widgets values are managed, their values are already set previously by the user, either with a default value, or a user-set value.
+  However, including a prop will update the prop to the new value. This can be used for assisting the user in setting new values.
+
   To correctly embed the widget in your response, please use the following format:
 
   \`\`\`
@@ -47,9 +51,9 @@ ${widgets.map((x) => JSON.stringify(x, null, 2)).join(",\n")}
   An example of a widget response is:
 
   \`\`\`
-  Hi there, certainly I can provide the volume slider widget to help you control the volume level. Here it is:
+  Hi there, certainly I can certainly help set the slider to 80% volume. Here you go:
 
-  {{ "widget": "VolumeSlider", "props": { "initialVolume": 50 } }}
+  {{ "widget": "VolumeSlider", "props": { "newVolume": 80 } }}
   \`\`\`
 
   If there are multiple widgets, please include them all in your response. For example:
@@ -59,11 +63,11 @@ ${widgets.map((x) => JSON.stringify(x, null, 2)).join(",\n")}
   
   This is the volume slider widget:
 
-  {{ "widget": "VolumeSlider", "props": { "initialVolume": 50 } }}
+  {{ "widget": "VolumeSlider" }}
 
   and here is the volume slider widget:
 
-  {{ "widget": "FilterWidget", "props": { "turbo": false, "xray": false, "reverse": false } }}
+  {{ "widget": "FilterWidget" }}
   \`\`\`
 
   Only include widgets that exist in the list of widgets above. Do not include any other widgets that are not in the list.

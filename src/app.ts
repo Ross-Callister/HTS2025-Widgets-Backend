@@ -11,20 +11,20 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// const model = new ChatOpenAI({
-//   // model: "deepseek-ai/DeepSeek-V3-0324",
-//   model: "google/gemma-3-27b-it",
-//   apiKey: process.env.FEATHERLESS_API_KEY,
-//   configuration: {
-//     baseURL: "https://api.featherless.ai/v1",
-//   },
-//   timeout: 10_000,
-// });
-
-const model = new ChatBedrockConverse({
-  model: "us.amazon.nova-micro-v1:0",
-  region: "us-west-2",
+const model = new ChatOpenAI({
+  // model: "deepseek-ai/DeepSeek-V3-0324",
+  model: "google/gemma-3-27b-it",
+  apiKey: process.env.FEATHERLESS_API_KEY,
+  configuration: {
+    baseURL: "https://api.featherless.ai/v1",
+  },
+  timeout: 10_000,
 });
+
+// const model = new ChatBedrockConverse({
+//   model: "us.amazon.nova-micro-v1:0",
+//   region: "us-west-2",
+// });
 
 const translationPrompt =
   "Translate the following text from English into {language}: {text}";
